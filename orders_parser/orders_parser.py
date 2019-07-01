@@ -14,7 +14,7 @@ def get_pass():
     # login = input('Input your email login: example@yandex.ru\n')
     login = "login@yandex.ru"
     # шифрование пароля -------------------------------------------------
-    # pwhash = '4a5b9cfbf4b8fefa28d04961405d7c502265e015'
+    # pwhash = ''
     # password = getpass.getpass("IMAP Password: ")
     #
     # if hashlib.sha1(bytearray(password, 'utf-8')).hexdigest() != pwhash:
