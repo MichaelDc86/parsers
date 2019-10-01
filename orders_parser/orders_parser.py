@@ -11,8 +11,8 @@ import lxml
 
 def get_pass():
     server = 'imap.yandex.ru'
-    # login = input('Input your email login: example@yandex.ru\n')
-    login = "login@yandex.ru"
+    login = input('Input your email login: example@yandex.ru\n')
+    # login = "login@yandex.ru"
     # шифрование пароля -------------------------------------------------
     # pwhash = ''
     # password = getpass.getpass("IMAP Password: ")
@@ -21,8 +21,8 @@ def get_pass():
     #     print("Invalid password", file=sys.stderr)
     #     sys.exit(1)
     # -------------------------------------------------------------------
-    password = ''
-    # password = input('Input your password: \n')
+    # password = ''
+    password = input('Input your password: \n')
     return password, server, login
 
 
