@@ -36,7 +36,7 @@ def get_calls(imap, folder_name_call):
 
     for i in letters_list[1][0].split():
         cur_letter = imap.fetch(i, '(RFC822)')
-        print('current letter: {}'.format(cur_letter))
+        # print('current letter: {}'.format(cur_letter))
         status, data = imap.fetch(i, '(RFC822)')
         message = email.message_from_bytes(data[0][1], _class=email.message.EmailMessage)
 
@@ -56,15 +56,15 @@ def get_calls(imap, folder_name_call):
             # DATAS --------------------------
             datas = soup.findAll('p')
 
-            print(datas)
+            # print(datas)
             datas_out = list(map(lambda x: x.text, datas))
-            print(datas_out)
+            # print(datas_out)
             datas_final = ''
             for _ in datas_out:
                 if _:
                     datas_final += _ + '  '  # '\n' + '  '
             datas_final = datas_final[0:]
-            print(datas_final)
+            # print(datas_final)
             # --------------------------------------------------------------
 
             # DATAFRAME ---------------------------------------------------------
@@ -74,7 +74,7 @@ def get_calls(imap, folder_name_call):
 
             # -------------------------------------------------------------------
 
-            print(date_list_call, datas_list_call)
+            # print(date_list_call, datas_list_call)
 
         except IndexError as err:
             print('Ошибка:\n', traceback.format_exc())
@@ -121,14 +121,14 @@ def main():
             folder_name = imap.list()[1][folder_number].decode('utf-8').split('"')[-2]
 
         if folder == 'юммаксзвонки':
-            print('Haaaaalllooooo!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+            # print('Haaaaalllooooo!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
             # print(item, type(item))
             # print(str(item).split('"'))
             folder_number_call = imap.list()[1].index(item)
             folder_name_call = imap.list()[1][folder_number_call].decode('utf-8').split('"')[-2]
 
         folders.append(folder)
-        print(folder)
+        # print(folder)
     # ENTER THE FOLDER ------------------------------------------------
 
     date_list_call, datas_list_call, unread_messages_call, message_number_call = get_calls(imap, folder_name_call)
@@ -143,7 +143,7 @@ def main():
 
     for i in letters_list[1][0].split():
         cur_letter = imap.fetch(i, '(RFC822)')
-        print('current letter: {}'.format(cur_letter))
+        # print('current letter: {}'.format(cur_letter))
         status, data = imap.fetch(i, '(RFC822)')  # .encoding('utf-8')   '(RFC822)'
         message = email.message_from_bytes(data[0][1], _class=email.message.EmailMessage)
 
@@ -171,9 +171,9 @@ def main():
 
                 # DATAS --------------------------
                 datas = soup.findAll('p')[0].findAll('b')
-                print(datas)
+                # print(datas)
                 datas_out = list(map(lambda x: x.string, datas))
-                print(datas_out)
+                # print(datas_out)
                 datas_final = ''
                 for _ in datas_out:
                     if _:
@@ -184,7 +184,7 @@ def main():
 
                 # ADDRESS ------------------------------------------------------
                 address = str(soup.findAll('p')[2].contents[0])
-                print(address)
+                # print(address)
                 if ',' in list(address):
                     address = str(address).replace(',', '')
 
@@ -193,7 +193,7 @@ def main():
                 if len(soup.findAll('p')) > 4:
                     shipment = str(soup.findAll('p')[4].contents[0])
                     shipment = shipment.replace('\\', '')
-                    print(shipment)
+                    # print(shipment)
 
                 # DATAFRAME ---------------------------------------------------------
 
@@ -205,7 +205,7 @@ def main():
 
                 # -----------------------------------------------------------------------
 
-                print(date_final, shipment, price, address, datas_final)
+                # print(date_final, shipment, price, address, datas_final)
             except AttributeError as e:
                 print('Ошибка:\n', traceback.format_exc())
                 print('AttributeError')
@@ -221,8 +221,8 @@ def main():
     print('unread messages call: {}'.format(unread_messages_call))
     print('unread messages numbers: {}'.format(message_number))
     print('unread messages numbers call: {}'.format(message_number_call))
-    print(datas_list)
-    print(datas_list_call)
+    # print(datas_list)
+    # print(datas_list_call)
     writer = ExcelWriter('Заказы и звонки.xlsx')
 
     df = DataFrame({'Date': date_list, 'Shipment': shipment_list, 'Price': price_list, 'Address': address_list, 'Personal data': datas_list})
